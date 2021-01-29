@@ -1,12 +1,12 @@
 {
-  "name": "react-pomodoro",
+  "name": "@freecey/react-pomodoro",
   "version": "0.0.2",
-  "description": "",
+  "description": "pomodoro with React.",
   "main": "index.js",
   "scripts": {
-    "start": "parcel src/index.html",
-    "build": "parcel build src/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "npx eslint --fix --cache src",
+    "build": "npx parcel build src/index.html",
+    "work": "npx parcel src/index.html --log-level 4"
   },
   "repository": {
     "type": "git",
