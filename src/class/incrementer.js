@@ -160,16 +160,16 @@ class Incrementer extends React.Component {
         const btnActionToggle = this.btnActionToggle;
         const btnReset = this.btnReset;
         const removeOneMin = this.removeOneMin;
-        // const btnWork = this.btnWork;
-        // const btnBreak = this.btnBreak;
-        const changeMode = this.changeMode;
+        const btnWork = this.changeMode(25);
+        const btnBreak = this.changeMode(5);
+        // const changeMode = this.changeMode;
         // changeMode
         return (
             <div>
-                <button type={"button"} onClick={changeMode(25)}>
+                <button type={"button"} onClick={btnWork}>
                     {"Work"}
                 </button>
-                <button type={"button"} onClick={changeMode(5)}>
+                <button type={"button"} onClick={btnBreak}>
                     {"Break"}
                 </button>
                 {/* <div>{this.txtBtnAction()}</div> */}
