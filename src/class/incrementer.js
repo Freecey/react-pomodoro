@@ -5,10 +5,10 @@ import React from "react";
 let windows;
 let min = 5;
 let sec = 0;
-const workTime = 25;
+const defaulttime = 25;
 // let breakTime = 5;
 
-const CountDowntimer = 60 * workTime + 15; // +15 for testing
+const CountDowntimer = 60 * defaulttime + 15; // +15 for testing
 
 class Incrementer extends React.Component {
     constructor(props) {
@@ -19,6 +19,9 @@ class Incrementer extends React.Component {
         this.btnActionToggle = this.btnActionToggle.bind(this);
         this.btnReset = this.btnReset.bind(this);
         this.removeOneMin = this.removeOneMin.bind(this);
+
+        this.btnBreak = this.btnBreak.bind(this);
+        this.btnWork = this.btnWork.bind(this);
     }
 
     // componentDidMount() {
@@ -95,6 +98,26 @@ class Incrementer extends React.Component {
         }
     }
 
+    btnWork() {
+        const SelectTime = 25 * 60;
+        if (this.state.timer === null) {
+            // this.setState(this.state ({cdstatus: null}));
+            this.setState(this.state({n: SelectTime, cdstatus: null}));
+        } else {
+            // console.log("Pause Before");
+        }
+    }
+
+    btnBreak() {
+        const SelectTime = 5 * 60;
+        if (this.state.timer === null) {
+            //this.setState(this.state ({cdstatus: null}));
+            this.setState(this.state({n: SelectTime, cdstatus: null}));
+        } else {
+            // console.log("Pause Before");
+        }
+    }
+
     txtAction() {
         if (this.state.timer === null) {
             if (this.state.n === 0) {
@@ -115,6 +138,12 @@ class Incrementer extends React.Component {
         //return this.state.timer ? "Concentration, it is working time" : "Yeah stop to work, Time to take a break";
     }
 
+    // txtBtnAction() {
+    // if (this.state.timer !== null) {
+    //     console.log("Pause Before");
+    // }
+    // }
+
     render() {
         min = Math.round(Math.floor(this.state.n / 60));
         sec = this.state.n % 60;
@@ -124,8 +153,17 @@ class Incrementer extends React.Component {
         const btnActionToggle = this.btnActionToggle;
         const btnReset = this.btnReset;
         const removeOneMin = this.removeOneMin;
+        const btnWork = this.btnWork;
+        const btnBreak = this.btnBreak;
         return (
             <div>
+                <button type={"button"} onClick={btnWork}>
+                    {"Work"}
+                </button>
+                <button type={"button"} onClick={btnBreak}>
+                    {"Break"}
+                </button>
+                {/* <div>{this.txtBtnAction()}</div> */}
                 {"Valeur : "}
                 {min}
                 {":"}
