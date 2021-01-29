@@ -1,7 +1,7 @@
 # Pomodoro Timer
 :tomato: A simple pomodoro timer built with ReactJS. 
 
-[Live Demo](https://pomodoro.neant.be/). Soon
+[Live version](https://pomodoro.neant.be/)
 
 ## What is this?
 
