@@ -8,7 +8,7 @@ let sec = 0;
 const defaulttime = 25;
 // let breakTime = 5;
 
-const CountDowntimer = 60 * defaulttime; // +15 for testing
+const CountDowntimer = 60 * defaulttime + 15; // +15 for testing
 
 class Incrementer extends React.Component {
     constructor(props) {
@@ -20,8 +20,10 @@ class Incrementer extends React.Component {
         this.btnReset = this.btnReset.bind(this);
         this.removeOneMin = this.removeOneMin.bind(this);
 
-        this.btnBreak = this.changeMode.bind(this, "5");
-        this.btnWork = this.changeMode.bind(this, "25");
+        this.btnBreak = this.changeMode.bind(5);
+        this.btnWork = this.changeMode.bind(25);
+
+        // this.changeMode = this.changeMode.bind(SelectTime);
     }
 
     // componentDidMount() {
@@ -104,11 +106,12 @@ class Incrementer extends React.Component {
             this.setState(() => ({n: SelectTime2, cdstatus: null}));
         }
     }
-    // btnWork() {
 
+    // btnWork() {
+    //     const SelectTime = 25 * 60;
     //     if (this.state.timer === null) {
-    //         const SelectTime = 25 * 60;
-    //         this.setState(() => ({n: SelectTime, cdstatus: null}));
+    //         // this.setState((state, props) => ({n: SelectTime, cdstatus: null}));
+    //         this.changeMode(SelectTime)
     //     }
     // }
 
@@ -116,7 +119,8 @@ class Incrementer extends React.Component {
     //     const SelectTime = 5 * 60;
     //     if (this.state.timer === null) {
     //         {
-    //             this.setState(() => ({n: SelectTime, cdstatus: null}));
+    //             // this.setState((state, props) => ({n: SelectTime, cdstatus: null}));
+    //             this.changeMode(SelectTime)
     //         }
     //     }
     // }
@@ -156,8 +160,10 @@ class Incrementer extends React.Component {
         const btnActionToggle = this.btnActionToggle;
         const btnReset = this.btnReset;
         const removeOneMin = this.removeOneMin;
-        const btnWork = this.btnWork;
-        const btnBreak = this.btnBreak;
+        const btnWork = this.btnWork();
+        const btnBreak = this.btnBreak();
+        // const changeMode = this.changeMode;
+        // changeMode
         return (
             <div>
                 <button type={"button"} onClick={btnWork}>
