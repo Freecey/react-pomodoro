@@ -13,16 +13,17 @@ const CountDowntimer = 60 * workTime + 15; // +15 for testing
 class Incrementer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {n: props.start, timer: null};
+
+        this.state = {n: props.start, timer: null, cdstatus: null};
         this.addOneMin = this.addOneMin.bind(this);
         this.btnActionToggle = this.btnActionToggle.bind(this);
         this.btnReset = this.btnReset.bind(this);
         this.removeOneMin = this.removeOneMin.bind(this);
     }
 
-    componentDidMount() {
-        this.start();
-    }
+    // componentDidMount() {
+    //this.start();
+    // }
 
     componentWillUnmount() {
         windows.clearInterval(this.state.timer);
@@ -62,16 +63,20 @@ class Incrementer extends React.Component {
     }
 
     pause() {
+        const cdStatusPause = "pause";
         window.clearInterval(this.state.timer);
         this.setState({
             timer: null,
+            cdstatus: cdStatusPause,
         });
     }
 
     start() {
+        const cdStatusStart = "start";
         window.clearInterval(this.state.timer);
         this.setState({
             timer: window.setInterval(this.increment.bind(this), 1000),
+            cdstatus: cdStatusStart,
         });
     }
 
@@ -85,6 +90,7 @@ class Incrementer extends React.Component {
 
     btnReset() {
         if (this.state.timer === null) {
+            this.setState({cdstatus: null});
             this.setState((state, props) => ({n: props.start}));
         }
     }
@@ -94,10 +100,13 @@ class Incrementer extends React.Component {
             if (this.state.n === 0) {
                 return "Yeah stop to work, Time to take a break";
             }
-            if (this.state.n === CountDowntimer) {
+            if (this.state.cdstatus === null) {
+                // this.state.n === CountDowntimer &&
                 return "Click to Start CountDown";
             }
-            return "CountDown in PAUSE";
+            if (this.state.cdstatus !== null) {
+                return "CountDown in PAUSE";
+            }
         }
         if (this.state.timer !== null) {
             return "Concentration, it is working time";
