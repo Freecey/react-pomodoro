@@ -20,8 +20,10 @@ class Incrementer extends React.Component {
         this.btnReset = this.btnReset.bind(this);
         this.removeOneMin = this.removeOneMin.bind(this);
 
-        this.btnBreak = this.btnBreak.bind(this);
-        this.btnWork = this.btnWork.bind(this);
+        // this.btnBreak = this.btnBreak.bind(this);
+        // this.btnWork = this.btnWork.bind(this);
+
+        this.changeMode = this.changeMode.bind(this);
     }
 
     // componentDidMount() {
@@ -98,25 +100,30 @@ class Incrementer extends React.Component {
         }
     }
 
-    btnWork() {
-        const SelectTime = 25 * 60;
+    changeMode(SelectTime) {
         if (this.state.timer === null) {
-            // this.setState(this.state ({cdstatus: null}));
-            this.setState(this.state({n: SelectTime, cdstatus: null}));
-        } else {
-            // console.log("Pause Before");
+            const SelectTime2 = SelectTime * 60;
+            this.setState(() => ({n: SelectTime2, cdstatus: null}));
         }
     }
 
-    btnBreak() {
-        const SelectTime = 5 * 60;
-        if (this.state.timer === null) {
-            //this.setState(this.state ({cdstatus: null}));
-            this.setState(this.state({n: SelectTime, cdstatus: null}));
-        } else {
-            // console.log("Pause Before");
-        }
-    }
+    // btnWork() {
+    //     const SelectTime = 25 * 60;
+    //     if (this.state.timer === null) {
+    //         // this.setState((state, props) => ({n: SelectTime, cdstatus: null}));
+    //         this.changeMode(SelectTime)
+    //     }
+    // }
+
+    // btnBreak() {
+    //     const SelectTime = 5 * 60;
+    //     if (this.state.timer === null) {
+    //         {
+    //             // this.setState((state, props) => ({n: SelectTime, cdstatus: null}));
+    //             this.changeMode(SelectTime)
+    //         }
+    //     }
+    // }
 
     txtAction() {
         if (this.state.timer === null) {
@@ -153,14 +160,16 @@ class Incrementer extends React.Component {
         const btnActionToggle = this.btnActionToggle;
         const btnReset = this.btnReset;
         const removeOneMin = this.removeOneMin;
-        const btnWork = this.btnWork;
-        const btnBreak = this.btnBreak;
+        // const btnWork = this.btnWork;
+        // const btnBreak = this.btnBreak;
+        const changeMode = this.changeMode;
+        // changeMode
         return (
             <div>
-                <button type={"button"} onClick={btnWork}>
+                <button type={"button"} onClick={changeMode(25)}>
                     {"Work"}
                 </button>
-                <button type={"button"} onClick={btnBreak}>
+                <button type={"button"} onClick={changeMode(5)}>
                     {"Break"}
                 </button>
                 {/* <div>{this.txtBtnAction()}</div> */}
