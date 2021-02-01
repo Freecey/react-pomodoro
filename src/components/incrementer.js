@@ -159,19 +159,23 @@ class Incrementer extends React.Component {
         // return (100 * partialValue) / totalValue;
         let percent = (100 - (100 * partialValue) / totalValue).toFixed(2);
         let classBar;
+        let classText;
         if (percent >= 90) {
             classBar = "bg-danger";
+            classText = "text-danger";
         }
         if (percent < 90 && percent > 60) {
             classBar = "bg-warning";
+            classText = "text-warning";
         }
         if (percent <= 60) {
             classBar = "bg-success";
+            classText = "text-success";
         }
         percent = percent.toString();
         percent = `${percent}%`;
         // percent = percent - 100
-        return [percent, classBar];
+        return [percent, classBar, classText];
     }
 
     // txtBtnAction() {
@@ -200,9 +204,9 @@ class Incrementer extends React.Component {
         };
         let animatedBarClass;
         if (this.state.timer === null || leftSec === 0) {
-            animatedBarClass = `progress-bar bg-success progress-bar-striped${progBarStyleClass}`;
+            animatedBarClass = `progress-bar ${progBarStyleClass} progress-bar-striped`;
         } else {
-            animatedBarClass = `progress-bar bg-success progress-bar-striped progress-bar-animated${progBarStyleClass}`;
+            animatedBarClass = `progress-bar ${progBarStyleClass} progress-bar-striped progress-bar-animated`;
         }
 
         return (
@@ -238,7 +242,7 @@ class Incrementer extends React.Component {
                     className={
                         "d-flex display-1 timer mx-auto border border-primary rounded-circle my-3"
                     }>
-                    <div className={"my-auto mx-auto"}>
+                    <div className={`my-auto mx-auto ${progBarStyle[2]}`}>
                         {min}
                         {":"}
                         {sec}
