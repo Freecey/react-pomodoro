@@ -1,15 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-const Incrementer = require("./class/incrementer.js");
-const Clock = require("./class/clock.js");
-const Welcome = require("./class/welcome.js");
+const Incrementer = require("./components/incrementer.js");
+const Clock = require("./components/clock.js");
+const Welcome = require("./components/welcome.js");
 
 function Home() {
     return (
-        <div>
-            <Welcome name={"World"} />
-            <Clock />
-            <Incrementer />
+        <div className={"full-page text-light bg-dark"}>
+            <div className={"container"}>
+                <div className={"col text-center"}>
+                    <Welcome name={"World"} />
+                    <Clock />
+                    <Incrementer />
+                </div>
+            </div>
         </div>
     );
 }

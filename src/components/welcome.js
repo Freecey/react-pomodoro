@@ -7,11 +7,14 @@ class Welcome extends React.Component {
     render() {
         return (
             <div>
-                <h1>
+                <div className={"h4 pt-2 text-white-50"}>
                     {"Hello "}
                     {this.props.name}
-                </h1>
+                </div>
                 <p>{this.props.children}</p>
+                <div>
+                    <h1 className={"my-4"}>{"Welcome to my Pomodoro"}</h1>
+                </div>
             </div>
         );
     }

@@ -23,8 +23,8 @@ class Clock extends React.Component {
 
     render() {
         return (
-            <div>
-                {"Il est "}
+            <div className={"text-warning"}>
+                {"We are "}
                 {this.state.date.toLocaleDateString()}{" "}
                 {this.state.date.toLocaleTimeString()}
             </div>
