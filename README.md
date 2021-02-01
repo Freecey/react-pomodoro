@@ -3,6 +3,8 @@
 
 [Live version](https://pomodoro.neant.be/), Deployed via Netlify.
 
+![Screenshot](https://github.com/Freecey/react-pomodoro/raw/master/screenshot/Screenshot.png)
+
 ## What is this?
 
 The Pomodoro provides you with a timer to keep you productive throughout the day. The timer switches between 25 minute and 5 minute intervals.
