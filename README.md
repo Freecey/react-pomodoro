@@ -1,17 +1,30 @@
 # Pomodoro Timer
 :tomato: A simple pomodoro timer built with ReactJS. 
 
-[Live version](https://pomodoro.neant.be/)
+[Live version](https://pomodoro.neant.be/), Deployed via Netlify.
 
 ## What is this?
 
 The Pomodoro provides you with a timer to keep you productive throughout the day. The timer switches between 25 minute and 5 minute intervals.
 
+## Features
+
+- Time display
+- Adjustable Timer for Focus (+/- 1min)
+- Adjustable Timer for Break (+/- 1min)
+- pause and reset timer button
+
+## Tech Used
+
+- React
+- Bootstrap
+- sass
+
 ## Run the project locally
 ```
-git clone git@github.com:jake-wies/pomodoro-react.git
+git clone git@github.com:Freecey/react-pomodoro.git
 
-cd pomodoro-react
+cd react-pomodoro
 
 npm install
 

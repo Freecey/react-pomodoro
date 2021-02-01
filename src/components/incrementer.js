@@ -149,7 +149,7 @@ class Incrementer extends React.Component {
             }
         }
         if (this.state.timer !== null) {
-            return "Concentration, it is working time";
+            return "Focus, it is working time";
         }
         return null;
         //return this.state.timer ? "Concentration, it is working time" : "Yeah stop to work, Time to take a break";
