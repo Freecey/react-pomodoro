@@ -3,7 +3,7 @@
 
 [Live version](https://pomodoro.neant.be/), Deployed via Netlify.
 
-![Screenshot](https://github.com/Freecey/react-pomodoro/raw/master/screenshot/Screenshot.png)
+![Screenshot](https://github.com/Freecey/react-pomodoro/raw/master/src/img/Screenshot.png)
 
 ## What is this?
 
