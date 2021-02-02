@@ -1,7 +1,7 @@
 {
   "name": "@freecey/react-pomodoro",
-  "version": "0.0.6",
-  "description": "pomodoro with React.",
+  "version": "1.0.0",
+  "description": "A simple pomodoro timer built with ReactJS..",
   "main": "index.js",
   "scripts": {
     "lint": "npx eslint --fix --cache src",
@@ -52,6 +52,7 @@
     "bootstrap": "^4.6.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "uifx": "^2.0.7"
   }
 }

@@ -1,4 +1,4 @@
-# Pomodoro Timer
+# Free Cey Pomodoro Timer v1.0.0
 :tomato: A simple pomodoro timer built with ReactJS. 
 
 [Live version](https://pomodoro.neant.be/), Deployed via Netlify.
@@ -15,6 +15,12 @@ The Pomodoro provides you with a timer to keep you productive throughout the day
 - Adjustable Timer for Focus (+/- 1min)
 - Adjustable Timer for Break (+/- 1min)
 - pause and reset timer button
+- Modal auto open when time is over and auto swith Work<=>Break
+- Sound when time is over
+- Message BOX
+- Display current Time/Date
+- Button +/-/Work/Break/Reset lock when CountDown in start
+- Progress Bar
 
 ## Tech Used
 

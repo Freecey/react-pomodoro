@@ -1,16 +1,18 @@
 // Incrementer.js
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
-// import ReactDOM from "react-dom";
+import {Modal, Button} from "react-bootstrap";
+import UIfx from "uifx";
+import dohAudio from "../sounds/doh.mp3";
+import woohooAudio from "../sounds/woohoo.mp3";
 
+const doh = new UIfx(dohAudio);
+const woohoo = new UIfx(woohooAudio);
 
 let windows;
 let min = 5;
 let sec = 0;
 const defaulttime = 25;
-// let breakTime = 5;
-
-const CountDowntimer =  60 * defaulttime; // +15 for testing
+const CountDowntimer = 60 * defaulttime; // +15 for testing
 
 class Incrementer extends React.Component {
     constructor(props) {
@@ -22,10 +24,10 @@ class Incrementer extends React.Component {
             cdstatus: null,
             totaltime: props.start,
             isOpen: false,
-            currenttask : null
+            currenttask: null,
         };
         this.addOneMin = this.addOneMin.bind(this);
-       
+
         this.btnActionToggle = this.btnActionToggle.bind(this);
         this.btnReset = this.btnReset.bind(this);
         this.removeOneMin = this.removeOneMin.bind(this);
@@ -33,14 +35,7 @@ class Incrementer extends React.Component {
         this.btnBreak = this.changeMode.bind(this, "5");
         this.btnWork = this.changeMode.bind(this, "25");
         this.startBreak = this.startBreak.bind(this);
-        
-
-        
     }
-
-    // componentDidMount() {
-    //this.start();
-    // }
 
     componentWillUnmount() {
         windows.clearInterval(this.state.timer);
@@ -48,53 +43,43 @@ class Incrementer extends React.Component {
 
     increment() {
         if (this.state.n === 0) {
-            // console.log("Timer to break");
             if (this.state.currenttask === true) {
-
                 this.openModal();
                 this.pause();
                 this.setState({currenttask: null});
-            }
-            else {
-
+                doh.play(1.0);
+            } else {
                 this.openModal();
                 this.pause();
                 this.setState({currenttask: true});
+                woohoo.play(1.0);
             }
-
         } else {
             this.setState((state, props) => ({n: state.n + props.step}));
         }
     }
 
     addOneMin() {
-        // e.preventDefault()
         if (this.state.timer === null) {
-            this.setState(state => ({
+            this.setState((state) => ({
                 n: state.n + 60,
                 totaltime: this.state.totaltime + 60,
             }));
         } else {
-            // console.log("Pause Before");
         }
-        // this.state.timer ? console.log('Pause Before') : this.setState((state, props) => ({n: state.n + 60}))
     }
 
     removeOneMin() {
-        // e.preventDefault()
         if (this.state.timer === null && this.state.n > 60) {
-            this.setState(state => ({
+            this.setState((state) => ({
                 n: state.n - 60,
                 totaltime: this.state.totaltime - 60,
             }));
         } else {
             if (this.state.n > 60) {
-                // console.log("Pause Before");
             } else {
-                // console.log("no negative timer");
             }
         }
-        //this.state.timer ? console.log('Pause Before') : this.setState((state, props) => ({n: state.n - 60}))
     }
 
     pause() {
@@ -119,20 +104,16 @@ class Incrementer extends React.Component {
     }
 
     startBreak() {
-
         if (this.state.timer === null) {
             if (this.state.currenttask === null) {
-                                // this.setState({currenttask: "work"});
-                                const SelectTime2 = 25 * 60;
-                                this.setState(() => ({
-                                    n: SelectTime2,
-                                    cdstatus: null,
-                                    totaltime: SelectTime2,
+                const SelectTime2 = 25 * 60;
+                this.setState(() => ({
+                    n: SelectTime2,
+                    cdstatus: null,
+                    totaltime: SelectTime2,
                 }));
             }
             if (this.state.currenttask === true) {
-
-                // this.setState({currenttask: "break"});
                 const SelectTime2 = 5 * 60;
                 this.setState(() => ({
                     n: SelectTime2,
@@ -140,20 +121,19 @@ class Incrementer extends React.Component {
                     totaltime: SelectTime2,
                 }));
             }
-            
 
-        if (this.state.cdstatus !== "pause") {
-            this.setState({totaltime: this.state.n});
+            if (this.state.cdstatus !== "pause") {
+                this.setState({totaltime: this.state.n});
+            }
+            const cdStatusStart = "start";
+            window.clearInterval(this.state.timer);
+            this.setState({
+                timer: window.setInterval(this.increment.bind(this), 1000),
+                cdstatus: cdStatusStart,
+                isOpen: false,
+            });
         }
-        const cdStatusStart = "start";
-        window.clearInterval(this.state.timer);
-        this.setState({
-            timer: window.setInterval(this.increment.bind(this), 1000),
-            cdstatus: cdStatusStart,
-            isOpen: false,
-        });
     }
-}
 
     btnActionToggle() {
         return this.state.timer ? this.pause() : this.start();
@@ -175,8 +155,7 @@ class Incrementer extends React.Component {
         if (this.state.timer === null) {
             if (this.state.currenttask === true) {
                 this.setState({currenttask: null});
-            }
-            else {
+            } else {
                 this.setState({currenttask: true});
             }
             this.setState(() => ({
@@ -186,18 +165,6 @@ class Incrementer extends React.Component {
             }));
         }
     }
-    // btnWork() {
-    //     const SelectTime = 25 * 60;
-    //     if (this.state.timer === null) {
-    //         this.setState(() => ({n: SelectTime, cdstatus: null}));
-    // }
-
-    // btnBreak() {
-    //     const SelectTime = 5 * 60;
-    //     if (this.state.timer === null) {
-    //             this.setState(() => ({n: SelectTime, cdstatus: null}));
-    //     }
-    // }
 
     txtAction() {
         if (this.state.timer === null) {
@@ -210,7 +177,6 @@ class Incrementer extends React.Component {
                 }
             }
             if (this.state.cdstatus === null) {
-                // this.state.n === CountDowntimer &&
                 return "Click to Start CountDown";
             }
             if (this.state.cdstatus !== null) {
@@ -226,11 +192,9 @@ class Incrementer extends React.Component {
             }
         }
         return null;
-        //return this.state.timer ? "Concentration, it is working time" : "Yeah stop to work, Time to take a break";
     }
 
     percentage(partialValue, totalValue) {
-        // return (100 * partialValue) / totalValue;
         let percent = (100 - (100 * partialValue) / totalValue).toFixed(2);
         let classBar;
         let classText;
@@ -248,25 +212,16 @@ class Incrementer extends React.Component {
         }
         percent = percent.toString();
         percent = `${percent}%`;
-        // percent = percent - 100
         return [percent, classBar, classText];
     }
 
-    openModal = () => this.setState({ isOpen: true });
-    closeModal = () => this.setState({ isOpen: false });
-
-    // txtBtnAction() {
-    // if (this.state.timer !== null) {
-    //     console.log("Pause Before");
-    // }
-    // }
+    openModal = () => this.setState({isOpen: true});
+    closeModal = () => this.setState({isOpen: false});
 
     render() {
-        console.log(this.state.currenttask);
         min = Math.round(Math.floor(this.state.n / 60));
         sec = this.state.n % 60;
         sec = sec.toString().padStart(2, "0");
-        // console.log(this.state.timer);
         const addOneMin = this.addOneMin;
         const btnActionToggle = this.btnActionToggle;
         const startBreak = this.startBreak;
@@ -316,7 +271,6 @@ class Incrementer extends React.Component {
                         </div>
                     </div>
                 </div>
-                {/* <div>{this.txtBtnAction()}</div> */}
                 <div
                     className={
                         "d-flex display-1 timer mx-auto border border-primary rounded-circle my-3"
@@ -356,33 +310,43 @@ class Incrementer extends React.Component {
                 </div>
                 <div className={" text-center col-12 col-lg-6 mx-auto"}>
                     <div className={"alert alert-info "}>
+                        <div>{this.txtAction()}</div>
                         <div>
-                        {this.txtAction()}
+                            <small>
+                                {
+                                    "(pause before to +/- 1 min and use Work/Break/Reset button)"
+                                }
+                            </small>
                         </div>
-                        <div><small>{"(pause before to +/- 1 min and use Work/Break/Reset button)"}</small></div>
                     </div>
                 </div>
                 {/* <Button variant="primary" onClick={this.openModal}>
             Launch demo modal   
           </Button> */}
 
-        <Modal show={this.state.isOpen} onHide={this.closeModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>{"Timer Finish"}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body><div className="text-center "></div><div className="text-center my-5">
-                        <button
-                        type={"button"}
-                        className={"btn btn-primary mx-auto"}
-                        onClick={startBreak}>{this.txtAction()}<br />
-                        {this.btnActionLabel()}
-                    </button></div></Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.closeModal}>
-              {"Close"}
-            </Button>
-          </Modal.Footer>
-        </Modal>
+                <Modal show={this.state.isOpen} onHide={this.closeModal}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>{"Timer Finish"}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="text-center "></div>
+                        <div className="text-center my-5">
+                            <button
+                                type={"button"}
+                                className={"btn btn-primary mx-auto"}
+                                onClick={startBreak}>
+                                {this.txtAction()}
+                                <br />
+                                {this.btnActionLabel()}
+                            </button>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.closeModal}>
+                            {"Close"}
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         );
     }
