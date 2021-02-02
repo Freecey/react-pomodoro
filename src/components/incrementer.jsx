@@ -173,6 +173,12 @@ class Incrementer extends React.Component {
     changeMode(SelectTime) {
         const SelectTime2 = SelectTime * 60;
         if (this.state.timer === null) {
+            if (this.state.currenttask === true) {
+                this.setState({currenttask: null});
+            }
+            else {
+                this.setState({currenttask: true});
+            }
             this.setState(() => ({
                 n: SelectTime2,
                 cdstatus: null,
@@ -350,7 +356,10 @@ class Incrementer extends React.Component {
                 </div>
                 <div className={" text-center col-12 col-lg-6 mx-auto"}>
                     <div className={"alert alert-info "}>
+                        <div>
                         {this.txtAction()}
+                        </div>
+                        <div><small>{"(pause before to +/- 1 min and use Work/Break/Reset button)"}</small></div>
                     </div>
                 </div>
                 {/* <Button variant="primary" onClick={this.openModal}>
