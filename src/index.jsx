@@ -1,8 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-const Incrementer = require("./components/incrementer.js");
-const Clock = require("./components/clock.js");
-const Welcome = require("./components/welcome.js");
+const Incrementer = require("./components/incrementer");
+const Clock = require("./components/clock");
+const Welcome = require("./components/welcome");
+
+
+
+
 
 function Home() {
     return (
@@ -12,6 +16,7 @@ function Home() {
                     <Welcome name={"World"} />
                     <Clock />
                     <Incrementer />
+                    
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 {
   "name": "@freecey/react-pomodoro",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "pomodoro with React.",
   "main": "index.js",
   "scripts": {
@@ -51,6 +51,7 @@
   "dependencies": {
     "bootstrap": "^4.6.0",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1"
   }
 }
